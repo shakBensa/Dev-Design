@@ -1182,7 +1182,7 @@ const DevDesignWebsite = () => {
                 <p>052-7221005</p>
                 {/* <p>רוטשילד 123, תל אביב</p> */}
               </div>
-              <div className="flex gap-4 mt-4">
+              {/* <div className="flex gap-4 mt-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   <Github className="w-5 h-5" />
                 </a>
@@ -1192,7 +1192,7 @@ const DevDesignWebsite = () => {
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   <Twitter className="w-5 h-5" />
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
