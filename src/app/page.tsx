@@ -809,7 +809,7 @@ const DevDesignWebsite = () => {
                 </div>
               </div>
               <div className="flex items-center">
-                <MapPin className="w-6 h-6 text-purple-600 ml-3" />
+                {/* <MapPin className="w-6 h-6 text-purple-600 ml-3" /> */}
                 {/* <div>
                   <div className="font-semibold text-gray-800">כתובת</div>
                   <div className="text-gray-600">רוטשילד 123, תל אביב</div>
@@ -817,9 +817,9 @@ const DevDesignWebsite = () => {
               </div>
             </div>
 
-            {/* <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-4 text-gray-800">עקבו אחרינו</h3>
-              <div className="flex items-center gap-4">
+            {/* <div className="mt-8"> */}
+              {/* <h3 className="text-lg font-semibold mb-4 text-gray-800">עקבו אחרינו</h3> */}
+              {/* <div className="flex items-center gap-4">
                 <a href="#" className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white hover:bg-purple-700 transition-colors">
                   <Github className="w-5 h-5" />
                 </a>
@@ -829,8 +829,8 @@ const DevDesignWebsite = () => {
                 <a href="#" className="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
                   <Twitter className="w-5 h-5" />
                 </a>
-              </div> */}
-            </div>
+              </div>  */}
+            {/* </div> */}
           </div>
           
           <ContactForm />
@@ -1182,17 +1182,9 @@ const DevDesignWebsite = () => {
                 <p>052-7221005</p>
                 {/* <p>רוטשילד 123, תל אביב</p> */}
               </div>
-              {/* <div className="flex gap-4 mt-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Github className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </a>
-              </div> */}
+              <div className="flex gap-4 mt-4">
+          
+              </div>
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
