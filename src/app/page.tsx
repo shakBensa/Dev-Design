@@ -798,7 +798,7 @@ const DevDesignWebsite = () => {
                 <Mail className="w-6 h-6 text-purple-600 ml-3" />
                 <div>
                   <div className="font-semibold text-gray-800">אימייל</div>
-                  <div className="text-gray-600">hello@devdesign.co.il</div>
+                  <div className="text-gray-600">shakedbravo@gmail.co.il</div>
                 </div>
               </div>
               <div className="flex items-center">
