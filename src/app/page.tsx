@@ -805,15 +805,15 @@ const DevDesignWebsite = () => {
                 <Phone className="w-6 h-6 text-purple-600 ml-3" />
                 <div>
                   <div className="font-semibold text-gray-800">טלפון</div>
-                  <div className="text-gray-600">03-1234567</div>
+                  <div className="text-gray-600">052-7221005</div>
                 </div>
               </div>
               <div className="flex items-center">
                 <MapPin className="w-6 h-6 text-purple-600 ml-3" />
-                <div>
+                {/* <div>
                   <div className="font-semibold text-gray-800">כתובת</div>
                   <div className="text-gray-600">רוטשילד 123, תל אביב</div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -1178,9 +1178,9 @@ const DevDesignWebsite = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">צור קשר</h3>
               <div className="space-y-2 text-gray-400">
-                <p>hello@devdesign.co.il</p>
-                <p>03-1234567</p>
-                <p>רוטשילד 123, תל אביב</p>
+                {/* <p>devdesign.sr@gmail.com</p> */}
+                <p>052-7221005</p>
+                {/* <p>רוטשילד 123, תל אביב</p> */}
               </div>
               <div className="flex gap-4 mt-4">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
