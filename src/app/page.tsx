@@ -473,7 +473,7 @@ const DevDesignWebsite = () => {
       image: 'from-pink-500 to-orange-600'
     },
     {
-      name: 'רביד רזיאב',
+      name: 'רביד רזייב',
       role: 'Project Manager',
       specialty: 'Agile, Scrum, Team Leadership',
       image: 'from-green-500 to-teal-600'
