@@ -472,6 +472,11 @@ const DevDesignWebsite = () => {
       specialty: 'Figma, Adobe XD, User Research',
       image: 'from-pink-500 to-orange-600'
     },
+    { name:'לירן בן חיים',
+      role: 'QA Engineer',
+      specialty: 'Testing, Automation, Performance',
+      image: 'from-yellow-500 to-green-600'
+    },
     {
       name: 'רביד רזייב',
       role: 'Project Manager',
