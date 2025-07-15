@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Mail, Phone, MapPin, Star, ChevronRight, ArrowUp, Code, Palette, Smartphone, Globe, Zap, Shield, Users, TrendingUp, CheckCircle, Github, Linkedin, Twitter } from 'lucide-react';
 
@@ -9,6 +7,7 @@ const DevDesignWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [pageTransition, setPageTransition] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1500);
@@ -522,9 +521,6 @@ const DevDesignWebsite = () => {
             >
               בואו נתחיל פרויקט
             </button>
-            {/* <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transform hover:scale-105 transition-all duration-300">
-              הצגת עבודות
-            </button> */}
           </div>
         </div>
 
@@ -547,11 +543,11 @@ const DevDesignWebsite = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
-                  <div className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 h-full flex flex-col justify-center min-h-[180px]">
+                  <div className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                     {stat.number}
                   </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
+                  <div className="text-gray-600 font-medium text-sm md:text-base">{stat.label}</div>
                 </div>
               </div>
             ))}
@@ -813,29 +809,7 @@ const DevDesignWebsite = () => {
                   <div className="text-gray-600">052-7221005</div>
                 </div>
               </div>
-              <div className="flex items-center">
-                {/* <MapPin className="w-6 h-6 text-purple-600 ml-3" /> */}
-                {/* <div>
-                  <div className="font-semibold text-gray-800">כתובת</div>
-                  <div className="text-gray-600">רוטשילד 123, תל אביב</div>
-                </div> */}
-              </div>
             </div>
-
-            {/* <div className="mt-8"> */}
-              {/* <h3 className="text-lg font-semibold mb-4 text-gray-800">עקבו אחרינו</h3> */}
-              {/* <div className="flex items-center gap-4">
-                <a href="#" className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white hover:bg-purple-700 transition-colors">
-                  <Github className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </a>
-              </div>  */}
-            {/* </div> */}
           </div>
           
           <ContactForm />
@@ -844,7 +818,7 @@ const DevDesignWebsite = () => {
     </div>
   );
 
-  const ContactForm = () => {
+  const ContactForm = React.memo(() => {
     const [formData, setFormData] = useState({
       firstName: '',
       lastName: '',
@@ -857,21 +831,20 @@ const DevDesignWebsite = () => {
     const [submitMessage, setSubmitMessage] = useState('');
 
     const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      const { name, value } = e.target;
+      const target = e.target;
+      const { name, value } = target;
       setFormData(prev => ({
         ...prev,
         [name]: value
       }));
     };
 
-    const handleFormSubmit = async (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setIsSubmitting(true);
       setSubmitMessage('');
 
       try {
-        // Here you would typically send to your backend API
-        // Example API call:
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
@@ -1005,7 +978,7 @@ const DevDesignWebsite = () => {
         </form>
       </div>
     );
-  };
+  });
 
   const renderPage = () => {
     switch (currentPage) {
@@ -1018,15 +991,18 @@ const DevDesignWebsite = () => {
   };
 
   const handlePageChange = (page: string) => {
-    setCurrentPage(page);
+    setPageTransition(true);
     setTimeout(() => {
+      setCurrentPage(page);
+      setSelectedBlogPost(null);
+      setPageTransition(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
+    }, 300);
   };
 
   return (
     <div className="font-sans text-right" dir="rtl">
-      <style jsx>{`
+      <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -1037,8 +1013,52 @@ const DevDesignWebsite = () => {
             transform: translateY(0);
           }
         }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 0.6;
+          }
+          50% {
+            opacity: 0.3;
+          }
+        }
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
         .animate-fadeInUp {
           animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out forwards;
+        }
+        .animate-bounce {
+          animation: bounce 2s ease-in-out infinite;
+        }
+        .animate-pulse {
+          animation: pulse 2s ease-in-out infinite;
+        }
+        .animate-spin {
+          animation: spin 1s linear infinite;
         }
         .delay-300 {
           animation-delay: 0.3s;
@@ -1051,6 +1071,24 @@ const DevDesignWebsite = () => {
         }
         .delay-2000 {
           animation-delay: 2s;
+        }
+        .hover\\:scale-105:hover {
+          transform: scale(1.05);
+        }
+        .hover\\:scale-110:hover {
+          transform: scale(1.1);
+        }
+        .hover\\:-translate-y-2:hover {
+          transform: translateY(-0.5rem);
+        }
+        .hover\\:shadow-xl:hover {
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .hover\\:shadow-2xl:hover {
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .group:hover .group-hover\\:scale-110 {
+          transform: scale(1.1);
         }
         .prose h3 {
           font-size: 1.5rem;
@@ -1079,6 +1117,29 @@ const DevDesignWebsite = () => {
         .prose strong {
           color: #7C3AED;
           font-weight: 600;
+        }
+        .transition-all {
+          transition-property: all;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 300ms;
+        }
+        .transition-transform {
+          transition-property: transform;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 300ms;
+        }
+        .transition-opacity {
+          transition-property: opacity;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 300ms;
+        }
+        .transition-colors {
+          transition-property: color, background-color, border-color;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 300ms;
+        }
+        .transform {
+          transform: translateX(0) translateY(0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
         }
       `}</style>
 
@@ -1144,7 +1205,7 @@ const DevDesignWebsite = () => {
       </header>
 
       {/* Main Content */}
-      <main>
+      <main className={`transition-opacity duration-300 ${pageTransition ? 'opacity-0' : 'opacity-100'}`}>
         {renderPage()}
       </main>
 
@@ -1183,12 +1244,7 @@ const DevDesignWebsite = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">צור קשר</h3>
               <div className="space-y-2 text-gray-400">
-                {/* <p>devdesign.sr@gmail.com</p> */}
                 <p>052-7221005</p>
-                {/* <p>רוטשילד 123, תל אביב</p> */}
-              </div>
-              <div className="flex gap-4 mt-4">
-          
               </div>
             </div>
           </div>
